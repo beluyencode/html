@@ -30,6 +30,13 @@ const view = (() => {
             pos.y = at.y - (at.y - pos.y) * amount;
             dirty = true;
         },
+        reset(el) {
+            m = [1, 0, 0, 1, 0, 0];
+            pos.x = 0;
+            scale = 1;              // current scale
+            pos.y = 0;
+            el.style.transform = `matrix(${m[0]},${m[1]},${m[2]},${m[3]},${m[4]},${m[5]})`;
+        }
     };
     return API;
 })();
@@ -84,10 +91,15 @@ const mainNode = new ProcessDesign("main");
 const main = document.getElementById("main")
 const btn = document.getElementById("addNode")
 const area_wheel = document.getElementById("area_wheel")
+const reset = document.getElementById("reset")
+
 
 
 btn.addEventListener("click", () => {
     mainNode.appendNode(+document.getElementById("index").value, new Node(document.getElementById("name").value))
+})
+reset.addEventListener("click", () => {
+    view.reset(main)
 })
 let scale = 1;
 
