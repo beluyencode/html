@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        html,
+        body {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+            width: 100%;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .bg {
+            height: 100%;
+            width: 100%;
+            position: fixed;
+            z-index: -1;
+            top: 0px;
+            left: 0%;
+        }
+
+        .bg>img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            text-align: center;
+            color: white;
+        }
+
+        .qr {
+            margin-top: 10px;
+            width: 150px;
+            height: 150px;
+        }
+
+        .text {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 16px 0px;
+        }
+
+        .text_blue {
+            margin-top: 8px;
+            color: blue;
+            font-weight: 800;
+
+        }
+
+        button {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 50px;
+            margin-top: 16px;
+            border: 0px;
+            padding: 8px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .md {
+            margin: 8px 0px !important;
+        }
+
+        .sub_img {
+            width: 100%;
+        }
+
+        .sub_img1 {
+            width: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg">
+        <img src="https://api.dev.qrclc.com/static/anh-nen-1-01_urs_cga6gsa23aks73c3536g2023-09-21 22:59:42.294574597 +0700 +07.png"
+            alt="">
+    </div>
+    <div class="content">
+        <img class="sub_img1"
+            src="https://api.dev.qrclc.com/static/logo-dai-hoi-01_urs_cga6gsa23aks73c3536g2023-09-21 23:04:27.841279561 +0700 +07.png"
+            alt="">
+        <img class="sub_img"
+            src="https://api.dev.qrclc.com/static/chao-mung-dai-bieu-01_urs_cga6gsa23aks73c3536g2023-09-21 23:01:49.574523558 +0700 +07.png"
+            alt="">
+
+        <img class="qr" src="https://api.dev.qrclc.com/api/guest/qrcode/ge_ck5hvpa9io6s7399ff60" alt="">
+        <p class="text">
+            nguyễn Văn test
+        </p>
+        <div>
+            <p class="text_blue">
+                Đơn vị công tác
+            </p>
+            <p class="md">
+                123123123
+            </p>
+        </div>
+        <div>
+            <p class="text_blue">
+                Chức vụ
+            </p>
+            <p class="md">
+                123123123
+            </p>
+        </div>
+        <div>
+            <p class="text_blue">
+                Tổ thảo luận
+            </p>
+            <p class="md">
+                123123123
+            </p>
+        </div>
+        <button>
+            <a href="">Link tài liệu</a>
+        </button>
+    </div>
+</body>
+</html>
