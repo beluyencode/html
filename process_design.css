@@ -15,9 +15,29 @@ body {
 
 .row_node {
     display: flex;
+    gap: 120px;
     justify-content: center;
-    gap: 10px;
-    margin-bottom: 50px;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.row_node_child {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+}
+
+.row_node_organization {
+    margin: 0px auto;
+}
+
+.roadNodeOrganization,
+.roadNodePersonal {
+    height: 150px;
+    position: relative;
 }
 
 .area_wheel {
@@ -25,6 +45,41 @@ body {
     height: 100%;
     overflow: auto;
     position: relative;
+    cursor: grab;
+}
+
+.line {
+    position: absolute;
+    background: #1D93CD;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.line_arrow_connect {
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+    bottom: -4px;
+    display: flex;
+    align-items: center;
+    width: 6px;
+    height: 5px;
+}
+
+.add_btn {
+    box-sizing: border-box;
+    width: 19px;
+    height: 19px;
+    border-radius: 100%;
+    border: 1px solid #1D93CD;
+    z-index: 10;
+    background: white;
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #1D93CD;
+    font-weight: bolder;
+    cursor: pointer;
 }
 
 .node_sign {
@@ -33,4 +88,5 @@ body {
     height: 80px;
     background-color: #AEDDF3;
     text-align: center;
+    cursor: pointer;
 }
