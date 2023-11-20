@@ -28,13 +28,20 @@ body {
     display: flex;
     justify-content: center;
     gap: 80px;
+    position: relative;
 }
 
-.row_node_organization {
-    margin: 0px auto;
+.row_node_organization {}
+
+.roadNodeOrganization {
+    height: 250px;
+    position: relative;
 }
 
-.roadNodeOrganization,
+.roadNodeOrganization>.line {
+    transform: none !important;
+}
+
 .roadNodePersonal {
     height: 150px;
     position: relative;
@@ -55,9 +62,10 @@ body {
     transform: translate(-50%, -50%);
 }
 
+
 .line_arrow_connect {
     clip-path: polygon(50% 100%, 0 0, 100% 0);
-    bottom: -4px;
+    bottom: -5px;
     display: flex;
     align-items: center;
     width: 6px;

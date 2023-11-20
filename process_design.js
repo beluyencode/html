@@ -68,8 +68,9 @@ class ProcessDesign {
         return arrDiv;
     }
     test(organization, numberOrder) {
+        view.reset(this.ele)
         this.listPlan = {}
-        for (let index = 0; index < 10; index++) {
+        for (let index = 0; index < 20; index++) {
             const id = this.ObjectId();
             this.listPlan[id] = new NodeSign(id, id, this.getRandom(organization), this.getRandom(numberOrder))
         }
@@ -117,6 +118,254 @@ class ProcessDesign {
             this.container.append(div);
         })
         this.container.append(road.cloneNode());
+        this.renderLine();
+    }
+    renderLine() {
+        const width = document.getElementById("container")?.clientWidth || 0;
+        [...this.ele.getElementsByClassName("roadNodeOrganization")].forEach(ele => {
+            const prev = ele.previousElementSibling;
+            const next = ele.nextElementSibling;
+            if (prev) {
+                [...prev.getElementsByClassName("row_node_organization")].forEach(item => {
+                    const domParent = item.getElementsByClassName("row_node_child")[0];
+                    const domNodeSign = domParent.getElementsByClassName("node_sign");
+                    if (domNodeSign) {
+                        const lineCenterBottom = this.renderLineCenter([...domNodeSign], "bottom");
+                        domParent.append(lineCenterBottom)
+                    }
+                })
+            }
+            if (next) {
+                [...next.getElementsByClassName("row_node_organization")].forEach(item => {
+                    const domParent = [...item.getElementsByClassName("row_node_child")];
+                    const domChild = domParent[domParent.length - 1];
+                    if (domChild) {
+                        const domNodeSign = [...domChild.getElementsByClassName("node_sign")];
+                        const lineCenterBottom = this.renderLineCenter(domNodeSign, "top");
+                        domParent[domParent.length - 1].append(lineCenterBottom)
+                    }
+                })
+            }
+            const lineTop = this.renderLineOrganization(prev, 'top');
+            const lineBottom = this.renderLineOrganization(next, 'bottom');
+            ele.append(lineTop);
+            ele.append(lineBottom);
+            const lineCenter = this.renderLineOrganization(null, 'center', lineTop, prev, lineBottom, next);
+            ele.append(lineCenter);
+            if (prev) {
+                [...prev.getElementsByClassName("row_node_organization")].forEach((ele, index) => {
+                    const lineToPrev = [...(ele ? ele.getElementsByClassName("line ProcessDesign renderLineCenter_top") : [])]
+                    lineTop.append(
+                        this.renderLineConnectOrganization(lineTop, 'top', lineToPrev[lineToPrev.length - 1], index)
+                    )
+                })
+            }
+            setTimeout(() => {
+                if (next) {
+                    [...next.getElementsByClassName("row_node_organization")].forEach((ele, index) => {
+                        console.log(ele.getElementsByClassName("line ProcessDesign renderLineCenter_bottom"));
+                        const lineToNext = [...(ele ? ele.getElementsByClassName("line ProcessDesign renderLineCenter_bottom") : [])]
+                        if (lineToNext.length > 1) {
+
+                        }
+                        lineTop.append(
+                            this.renderLineConnectOrganization(lineTop, 'bottom', lineToNext[0], index)
+                        )
+                    })
+                }
+            });
+        })
+    }
+    getWidthRowNode(dom) {
+        let width = dom?.clientWidth || 0;
+        let left = 0;
+        if (dom) {
+            const item = [...(dom.getElementsByClassName("row_node_organization") || [])];
+            if (item.length && item.length > 1) {
+
+                width = item[item.length - 1].offsetLeft - item[0].offsetLeft + (item[item.length - 1].clientWidth / 2) - (item[0].clientWidth / 2);
+                left = item[0].clientWidth / 2 + item[0].offsetLeft;
+            } else {
+                width = 0;
+            }
+        }
+        return [width, left];
+    }
+    renderLineOrganization(dom, type, domTop, domLineTop, domBottom, domLineBottom) {
+        const div = document.createElement("div")
+        div.classList.add("line")
+        div.classList.add("ProcessDesign")
+        div.classList.add("renderLineOrganization")
+        const arrlineConnect = [];
+        const position = this.getWidthRowNode(dom)
+        let width = position[0];
+        let left = position[1];
+        let connectLine
+        let space = 0;
+        switch (type) {
+            case "top":
+                div.style.top = "40%";
+                div.style.width = width + "px";
+                div.style.height = "2px";
+                div.style.left = left + "px";
+                // space = width / (domList.length - 1);
+                // for (let index = 0; index < domList.length; index++) {
+                //     const lineConnect = document.createElement("div");
+                //     lineConnect.classList.add("line")
+                //     lineConnect.style.height = "40px";
+                //     lineConnect.style.width = "2px";
+                //     lineConnect.style.top = "20px";
+                //     lineConnect.style.left = space * index + "px";
+                //     const arrow = document.createElement("div")
+                //     arrow.classList.add("line")
+                //     arrow.classList.add("line_arrow_connect")
+                //     lineConnect.append(arrow)
+                //     arrlineConnect.push(lineConnect)
+                // }
+                break;
+            case "bottom":
+                div.style.top = "60%";
+                div.style.width = width + "px";
+                div.style.height = "2px";
+                div.style.left = left + "px";
+                break;
+            case "center":
+                div.style.width = 2 + "px";
+                div.setAttribute("type-index", type)
+                let countPositon = 0;
+                let countHeight = 100;
+                let deviationNumberTop = 0;
+                let deviationNumberBottom = 0;
+                if (domTop.clientWidth) {
+                    countPositon = countPositon + 40;
+                    countHeight -= 40;
+                } else {
+                    const haveLineChildTop = [...(domLineTop?.getElementsByClassName("line") || [])];
+                    deviationNumberTop = (haveLineChildTop[haveLineChildTop.length - 1] || {}).clientWidth ? 41 : 0;
+
+                }
+                if (domBottom.clientWidth) {
+                    countHeight -= 40;
+                } else {
+                    const haveLineChildBottom = [...(domLineBottom?.getElementsByClassName("line") || [])];
+                    deviationNumberBottom = (haveLineChildBottom[haveLineChildBottom.length - 1] || {}).clientWidth ? 40 : 0;
+                }
+                div.style.top = `calc(${countPositon}% + ${deviationNumberTop}px )`;
+                div.style.height = `calc(${countHeight}% - ${deviationNumberBottom}px - ${deviationNumberTop}px )`;
+                div.style.left = `calc(50% - 1px)`;
+                const add = document.createElement("div")
+                add.classList.add("add_btn")
+                add.textContent = "+"
+                div.append(add)
+            default:
+                break;
+        }
+        return div
+    }
+    calculateDistanceY(element1, element2) {
+        var rect1 = element1.getBoundingClientRect();
+        var rect2 = element2.getBoundingClientRect();
+
+        var distanceX = Math.abs(rect1.left - rect2.left);
+        var distanceY = Math.abs(rect1.top - rect2.top);
+
+        return { x: distanceX, y: distanceY };
+    }
+    renderLineConnectOrganization(domLine, type, lineTo, index) {
+        const div = document.createElement("div")
+        if (domLine.clientWidth) {
+            div.classList.add("line")
+            div.classList.add("ProcessDesign")
+            div.classList.add("renderLineConnectOrganization")
+            const arrlineConnect = [];
+            let add
+            let space = 0;
+            switch (type) {
+                case "top":
+                    div.style.width = "2px";
+                    div.style.height = this.calculateDistanceY(domLine, lineTo).y + "px";
+                    div.style.bottom = "0px";
+                    div.style.transform = "none";
+                    div.style.left = this.calculateDistanceY(domLine, lineTo).x - 1 + lineTo.clientWidth / 2 + "px";
+                    if (!index) {
+                        div.style.left = "-1px"
+                    }
+                    add = document.createElement("div")
+                    add.classList.add("add_btn")
+                    add.textContent = "+"
+                    div.append(add)
+                    // console.log(domLine, lineTo, this.calculateDistanceY(domLine, lineTo), index);
+                    break;
+                case "bottom":
+                    div.style.width = "2px";
+                    div.style.height = this.calculateDistanceY(domLine, lineTo).y + "px";
+                    div.style.bottom = "0px";
+                    div.style.left = this.calculateDistanceY(domLine, lineTo).x - 1 + lineTo.clientWidth / 2 + "px";
+                    div.style.transform = "none";
+                    add = document.createElement("div")
+                    add.classList.add("add_btn")
+                    add.textContent = "+"
+                    div.append(add)
+                    console.log(div, lineTo, this.calculateDistanceY(domLine, lineTo), index);
+                    break;
+                default:
+                    break;
+            }
+        }
+        return div
+    }
+    renderLineCenter(domList, type, lineTo) {
+        const div = document.createElement("div")
+        div.classList.add("line")
+        div.classList.add("ProcessDesign")
+        div.classList.add(`renderLineCenter_${type}`)
+        const arrlineConnect = [];
+        let width = 0;
+        let space = 0;
+        let lineConnectOrganization
+        switch (type) {
+            case "top":
+                width = 180 * domList.length + 80 * (domList.length - 1) - 180;
+                div.style.width = width + "px";
+                div.style.height = "2px";
+                div.style.top = "150%";
+                space = width / (domList.length - 1);
+                for (let index = 0; index < domList.length; index++) {
+                    const lineConnect = document.createElement("div");
+                    lineConnect.classList.add("line")
+                    lineConnect.style.height = "40px";
+                    lineConnect.style.width = "2px";
+                    lineConnect.style.top = "-18px";
+                    lineConnect.style.left = space * index + "px";
+                    arrlineConnect.push(lineConnect)
+                }
+                div.append(...arrlineConnect)
+                break;
+            case "bottom":
+                width = 180 * domList.length + 80 * (domList.length - 1) - 180;
+                div.style.width = width + "px";
+                div.style.height = "2px";
+                div.style.bottom = " calc(100% + 40px)";
+                space = width / (domList.length - 1);
+                for (let index = 0; index < domList.length; index++) {
+                    const lineConnect = document.createElement("div");
+                    lineConnect.classList.add("line")
+                    lineConnect.style.height = "40px";
+                    lineConnect.style.width = "2px";
+                    lineConnect.style.top = "20px";
+                    lineConnect.style.left = space * index + "px";
+                    const arrow = document.createElement("div")
+                    arrow.classList.add("line")
+                    arrow.classList.add("line_arrow_connect")
+                    lineConnect.append(arrow)
+                    arrlineConnect.push(lineConnect)
+                }
+                div.append(...arrlineConnect)
+                break;
+            default:
+                break;
+        }
+        return div
     }
 }
 class NodeOrganization {
@@ -164,27 +413,27 @@ class NodeOrganization {
             const lineCenterTop = this.renderLineCenter(prev, "top");
             const lineCenterBottom = this.renderLineCenter(next, "bottom");
             const lineCenterCenter = this.renderLineCenter(next, "center");
-            ele.append(lineCenterTop)
             ele.append(lineCenterCenter)
             ele.append(lineCenterBottom)
+            ele.append(lineCenterTop)
         })
-        console.log(
-            this.ele.getElementsByClassName("roadNodePersonal")
-        );
     }
     renderLineCenter(domList, type) {
         const div = document.createElement("div")
         div.classList.add("line")
+        div.classList.add("NodeOrganization")
+        div.classList.add("renderLineCenter")
+        div.style.backgroundColor = this.color;
         const arrlineConnect = [];
         let width = 0;
         let space = 0;
         switch (type) {
             case "top":
-                console.log(domList[domList.length - 1].offsetLeft, domList[0].offsetLeft);
                 width = 180 * domList.length + 80 * (domList.length - 1) - 180;
                 div.style.width = width + "px";
                 div.style.height = "2px";
                 div.style.top = "40px";
+                div.setAttribute("type-index", type)
                 space = width / (domList.length - 1);
                 for (let index = 0; index < domList.length; index++) {
                     const lineConnect = document.createElement("div");
@@ -193,16 +442,17 @@ class NodeOrganization {
                     lineConnect.style.width = "2px";
                     lineConnect.style.top = "-18px";
                     lineConnect.style.left = space * index + "px";
+                    lineConnect.style.backgroundColor = this.color;
                     arrlineConnect.push(lineConnect)
                 }
                 div.append(...arrlineConnect)
                 break;
             case "bottom":
-                console.log(domList[domList.length - 1].offsetLeft, domList[0].offsetLeft);
                 width = 180 * domList.length + 80 * (domList.length - 1) - 180;
                 div.style.width = width + "px";
                 div.style.height = "2px";
                 div.style.bottom = "40px";
+                div.setAttribute("type-index", type)
                 space = width / (domList.length - 1);
                 for (let index = 0; index < domList.length; index++) {
                     const lineConnect = document.createElement("div");
@@ -211,9 +461,11 @@ class NodeOrganization {
                     lineConnect.style.width = "2px";
                     lineConnect.style.top = "20px";
                     lineConnect.style.left = space * index + "px";
+                    lineConnect.style.backgroundColor = this.color;
                     const arrow = document.createElement("div")
                     arrow.classList.add("line")
                     arrow.classList.add("line_arrow_connect")
+                    arrow.style.backgroundColor = this.color;
                     lineConnect.append(arrow)
                     arrlineConnect.push(lineConnect)
                 }
@@ -226,6 +478,8 @@ class NodeOrganization {
                 const add = document.createElement("div")
                 add.classList.add("add_btn")
                 add.textContent = "+"
+                add.style.color = this.color
+                add.style.borderColor = this.color
                 div.append(add)
                 break;
             default:
@@ -256,7 +510,7 @@ class NodeSign {
 }
 
 const organization = [1, 2, 3, 4]
-const numberOrder = [1, 2, 3, 4]
+const numberOrder = [1, 2, 3, 4, 5, 6]
 
 const mainNode = new ProcessDesign("main");
 const main = document.getElementById("main")
