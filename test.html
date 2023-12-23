@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="test.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="tree" id="tree">
+        <ul>
+            <li>
+                <div>Lorem ipsum dolor sit amet
+                    <span>
+                        <dt><img src="" /></dt><label>Parent</label>
+                    </span>
+                </div>
+
+                <ul><a class="add-node" href="#">+</a>
+                    <li>
+                        <div>Lorem ipsum dolor sit amet
+                            <span>
+                                <dt><img src="" /></dt><label>Child</label>
+                            </span>
+                        </div>
+
+                        <ul> <a class="add-node" href="#">+</a>
+                            <li>
+                                <div>Lorem ipsum dolor sit amet
+                                    <span>
+                                        <dt><img src="" /></dt><label>Grand Child</label>
+                                    </span>
+                                </div>
+
+                                <ul><a class="add-node" href="#">+</a></ul>
+                            </li>
+                            <li>
+                                <div>Lorem ipsum dolor sit amet
+                                    <span>
+                                        <dt><img src="" /></dt><label>Grand Child</label>
+                                    </span>
+                                </div>
+
+                                <ul>
+                                    <a class="add-node" href="#">+</a>
+                                    <li>
+                                        <div>Lorem ipsum dolor sit amet
+                                            <span>
+                                                <dt><img src="" /></dt><label>Grand Child</label>
+                                            </span>
+                                        </div>
+
+                                        <ul><a class="add-node" href="#">+</a></ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div>Lorem ipsum dolor sit amet
+                            <span>
+                                <dt><img src="" /></dt><label>Child</label>
+                            </span>
+                        </div>
+
+                        <ul><a class="add-node" href="#">+</a>
+                            <li>
+                                <div>Lorem ipsum dolor sit amet
+                                    <span>
+                                        <dt><img src="" /></dt><label>Grand Child</label>
+                                    </span>
+                                </div>
+
+                                <ul><a class="add-node" href="#">+</a></ul>
+                            </li>
+                            <li>
+                                <div>Lorem ipsum dolor sit amet
+                                    <span>
+                                        <dt><img src="" /></dt><label>Grand Child</label>
+                                    </span>
+                                </div>
+
+                                <ul>
+                                    <a class="add-node" href="#">+</a>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- <li>
+                        <div>Lorem ipsum dolor sit amet
+                            <span>
+                                <dt><img src="" /></dt><label>Child</label>
+                            </span>
+                        </div>
+
+                        <ul><a class="add-node" href="#">+</a>
+                            <li>
+                                <div>Lorem ipsum dolor sit amet
+                                    <span>
+                                        <dt><img src="" /></dt><label>Grand Child</label>
+                                    </span>
+                                </div>
+
+                                <ul><a class="add-node" href="#">+</a>
+                                    <li>
+                                        <div>Lorem ipsum dolor sit amet
+                                            <span>
+                                                <dt><img src="" /></dt><label>Grand Grand Child</label>
+                                            </span>
+                                        </div>
+
+                                        <ul><a class="add-node" href="#">+</a>
+                                            <li>
+                                                <div>Lorem ipsum dolor sit amet
+                                                    <span>
+                                                        <dt><img src="" /></dt><label>Grand Grand Grand Child</label>
+                                                    </span>
+                                                </div>
+
+                                                <ul><a class="add-node" href="#">+</a>
+                                                    <li>
+                                                        <div>Lorem ipsum dolor sit amet
+                                                            <span>
+                                                                <dt><img src="" /></dt><label>Grand Grand Grand Grand
+                                                                    Child</label>
+                                                            </span>
+                                                        </div>
+
+                                                        <ul><a class="add-node" href="#">+</a></ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <div id="campaign1">Lorem ipsum dolor sit amet
+                                                    <span>
+                                                        <dt><img src="" /></dt><label>Grand Grand Grand Child</label>
+                                                    </span>
+                                                </div>
+
+                                                <ul><a class="add-node" href="#">+</a></ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div id="campaign3">Lorem ipsum dolor sit amet
+                                    <span>
+                                        <dt><img src="" /></dt><label>Grand Child</label>
+                                    </span>
+                                </div>
+
+                                <ul><a class="add-node" href="#">+</a></ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div>Lorem ipsum dolor sit amet
+                            <span>
+                                <dt><img src="" /></dt><label>Child</label>
+                            </span>
+                        </div>
+
+                        <ul><a class="add-node" href="#">+</a>
+                            <li>
+                                <div>Lorem ipsum dolor sit amet
+                                    <span>
+                                        <dt><img src="" /></dt><label>Grand Child</label>
+                                    </span>
+                                </div>
+
+                                <ul><a class="add-node" href="#">+</a>
+                                    <li>
+                                        <div>Lorem ipsum dolor sit amet
+                                            <span>
+                                                <dt><img src="" /></dt><label>Grand Grand Child</label>
+                                            </span>
+                                        </div>
+
+                                        <ul><a class="add-node" href="#">+</a>
+                                            <li>
+                                                <div>Lorem ipsum dolor sit amet
+                                                    <span>
+                                                        <dt><img src="" /></dt><label>Grand Grand Grand Child</label>
+                                                    </span>
+                                                </div>
+
+                                                <ul><a class="add-node" href="#">+</a>
+                                                    <li>
+                                                        <div>Lorem ipsum dolor sit amet
+                                                            <span>
+                                                                <dt><img src="" /></dt><label>Grand Grand Grand Grand
+                                                                    Child</label>
+                                                            </span>
+                                                        </div>
+
+                                                        <ul><a class="add-node" href="#">+</a></ul>
+                                                    </li>
+                                                    <li>
+                                                        <div>Lorem ipsum dolor sit amet
+                                                            <span>
+                                                                <dt><img src="" /></dt><label>Grand Grand Grand
+                                                                    Child</label>
+                                                            </span>
+                                                        </div>
+
+                                                        <ul><a class="add-node" href="#">+</a>
+                                                            <li>
+                                                                <div>Lorem ipsum dolor sit amet
+                                                                    <span>
+                                                                        <dt><img src="" /></dt><label>Grand Grand Grand
+                                                                            Grand
+                                                                            Child</label>
+                                                                    </span>
+                                                                </div>
+
+                                                                <ul><a class="add-node" href="#">+</a>
+                                                                    <li>
+                                                                        <div>Lorem ipsum dolor sit amet
+                                                                            <span>
+                                                                                <dt><img src="" /></dt><label>Grand
+                                                                                    Grand Grand
+                                                                                    Grand
+                                                                                    Child</label>
+                                                                            </span>
+                                                                        </div>
+
+                                                                        <ul><a class="add-node" href="#">+</a>
+                                                                            <li>
+                                                                                <div>Lorem ipsum dolor sit amet
+                                                                                    <span>
+                                                                                        <dt><img src="" /></dt>
+                                                                                        <label>Grand Grand Grand
+                                                                                            Grand
+                                                                                            Child</label>
+                                                                                    </span>
+                                                                                </div>
+
+                                                                                <ul><a class="add-node" href="#">+</a>
+                                                                                </ul>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <div id="campaign1">Lorem ipsum dolor sit amet
+                                                    <span>
+                                                        <dt><img src="" /></dt><label>Grand Grand Grand Child</label>
+                                                    </span>
+                                                </div>
+
+                                                <ul><a class="add-node" href="#">+</a></ul>
+                                            </li>
+                                            <li>
+                                                <div id="campaign1">Lorem ipsum dolor sit amet
+                                                    <span>
+                                                        <dt><img src="" /></dt><label>Grand Grand Grand Child</label>
+                                                    </span>
+                                                </div>
+
+                                                <ul><a class="add-node" href="#">+</a></ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div id="campaign3">Lorem ipsum dolor sit amet
+                                    <span>
+                                        <dt><img src="" /></dt><label>Grand Child</label>
+                                    </span>
+                                </div>
+
+                                <ul><a class="add-node" href="#">+</a></ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div>Lorem ipsum dolor sit amet
+                            <span>
+                                <dt><img src="" /></dt><label>Child</label>
+                            </span>
+                        </div>
+
+                        <ul><a class="add-node" href="#">+</a>
+                            <li>
+                                <div>Lorem ipsum dolor sit amet
+                                    <span>
+                                        <dt><img src="" /></dt><label>Grand Child</label>
+                                    </span>
+                                </div>
+
+                                <ul><a class="add-node" href="#">+</a>
+                                    <li>
+                                        <div>Lorem ipsum dolor sit amet
+                                            <span>
+                                                <dt><img src="" /></dt><label>Grand Grand Child</label>
+                                            </span>
+                                        </div>
+
+                                        <ul><a class="add-node" href="#">+</a>
+                                            <li>
+                                                <div>Lorem ipsum dolor sit amet
+                                                    <span>
+                                                        <dt><img src="" /></dt><label>Grand Grand Grand Child</label>
+                                                    </span>
+                                                </div>
+
+                                                <ul><a class="add-node" href="#">+</a>
+                                                    <li>
+                                                        <div>Lorem ipsum dolor sit amet
+                                                            <span>
+                                                                <dt><img src="" /></dt><label>Grand Grand Grand Grand
+                                                                    Child</label>
+                                                            </span>
+                                                        </div>
+
+                                                        <ul><a class="add-node" href="#">+</a></ul>
+                                                    </li>
+                                                    <li>
+                                                        <div>Lorem ipsum dolor sit amet
+                                                            <span>
+                                                                <dt><img src="" /></dt><label>Grand Grand Grand
+                                                                    Child</label>
+                                                            </span>
+                                                        </div>
+
+                                                        <ul><a class="add-node" href="#">+</a>
+                                                            <li>
+                                                                <div>Lorem ipsum dolor sit amet
+                                                                    <span>
+                                                                        <dt><img src="" /></dt><label>Grand Grand Grand
+                                                                            Grand
+                                                                            Child</label>
+                                                                    </span>
+                                                                </div>
+
+                                                                <ul><a class="add-node" href="#">+</a>
+                                                                    <li>
+                                                                        <div>Lorem ipsum dolor sit amet
+                                                                            <span>
+                                                                                <dt><img src="" /></dt><label>Grand
+                                                                                    Grand Grand
+                                                                                    Grand
+                                                                                    Child</label>
+                                                                            </span>
+                                                                        </div>
+
+                                                                        <ul><a class="add-node" href="#">+</a>
+                                                                            <li>
+                                                                                <div>Lorem ipsum dolor sit amet
+                                                                                    <span>
+                                                                                        <dt><img src="" /></dt>
+                                                                                        <label>Grand Grand Grand
+                                                                                            Grand
+                                                                                            Child</label>
+                                                                                    </span>
+                                                                                </div>
+
+                                                                                <ul><a class="add-node" href="#">+</a>
+                                                                                </ul>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <div id="campaign1">Lorem ipsum dolor sit amet
+                                                    <span>
+                                                        <dt><img src="" /></dt><label>Grand Grand Grand Child</label>
+                                                    </span>
+                                                </div>
+
+                                                <ul><a class="add-node" href="#">+</a></ul>
+                                            </li>
+                                            <li>
+                                                <div id="campaign1">Lorem ipsum dolor sit amet
+                                                    <span>
+                                                        <dt><img src="" /></dt><label>Grand Grand Grand Child</label>
+                                                    </span>
+                                                </div>
+
+                                                <ul><a class="add-node" href="#">+</a></ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li> -->
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+
+    <svg id="svg" width="0" height="0">
+        <path id="path1" d="M0 0" stroke="#789" fill="none" stroke-width="1px" ; />
+    </svg>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="test.js"></script>
+</body>
+
+</html>
